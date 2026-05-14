@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Message extends Model
+{
+    protected $fillable = [
+        'name',
+        'email',
+        'subject',
+        'body',
+        'is_read',
+        'sent_at',
+    ];
+
+    protected $casts = [
+        'is_read' => 'boolean',
+        'sent_at' => 'datetime',
+    ];
+}
