@@ -38,7 +38,7 @@
 
         <div class="nav-actions">
           <button id="darkToggle" title="Toggle theme">☀️</button>
-          <a href="{{ route('admin.login') }}" class="nav-links nav-cta">Admin ↗</a>
+
         </div>
 
         <button class="hamburger" aria-label="Menu">
@@ -53,7 +53,7 @@
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
-        <a href="{{ route('admin.login') }}" style="color:var(--accent)">Admin Dashboard ↗</a>
+
       </div>
     </div>
   </nav>
@@ -472,7 +472,7 @@
         <p class="footer-copy">© 2025 Amine Aboukhassib. Built with Laravel, PHP, MySQL &amp; vanilla JS.</p>
         <div class="footer-links">
           <a href="#hero">Top</a>
-          <a href="{{ route('admin.login') }}">Admin</a>
+
           <a href="https://github.com" target="_blank">GitHub</a>
         </div>
       </div>
