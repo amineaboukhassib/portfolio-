@@ -359,10 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     try {
-      // Find csrf token from another form, or just hope it's not strictly required, 
-      // wait, we need CSRF token for POST in Laravel. 
-      // Let's grab it from the contact form
-      const csrfToken = document.querySelector('input[name="_token"]')?.value;
+      const csrfToken = vForm.querySelector('input[name="_token"]')?.value || document.querySelector('input[name="_token"]')?.value;
 
       const res = await fetch('/api/visitors', {
         method: 'POST',

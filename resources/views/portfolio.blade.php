@@ -488,6 +488,7 @@
       <p>I'd love to know who is visiting. Please drop your details below (optional).</p>
       
       <form id="visitorForm">
+        @csrf
         <div class="form-field">
           <label for="vName">Your Name *</label>
           <input type="text" id="vName" name="name" placeholder="John Doe" required>
