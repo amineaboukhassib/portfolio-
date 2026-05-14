@@ -324,11 +324,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const vForm = document.getElementById('visitorForm');
   const vClose = document.getElementById('visitorClose');
   const vStatus = document.getElementById('visitorStatus');
+  const heroTag = document.getElementById('heroTag');
 
   if (!vModal) return;
 
+  // Personalization helper
+  const personalize = (name, company) => {
+    if (heroTag && name) {
+      heroTag.textContent = `Welcome, ${name}${company ? ' from ' + company : ''}! 👋`;
+      heroTag.style.color = 'var(--accent)';
+      heroTag.style.fontWeight = 'bold';
+    }
+  };
+
   // Check if they have visited before
   const hasVisited = localStorage.getItem('has_visited_portfolio');
+  const savedName = localStorage.getItem('visitor_name');
+  const savedCompany = localStorage.getItem('visitor_company');
+
+  if (savedName) {
+    personalize(savedName, savedCompany);
+  }
   
   if (!hasVisited) {
     // Show modal after 1.5 seconds
@@ -352,11 +368,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
-    const payload = {
-      name: document.getElementById('vName').value.trim(),
-      company: document.getElementById('vCompany').value.trim(),
-      email: document.getElementById('vEmail').value.trim()
-    };
+    const name = document.getElementById('vName').value.trim();
+    const company = document.getElementById('vCompany').value.trim();
+    const email = document.getElementById('vEmail').value.trim();
+
+    const payload = { name, company, email };
 
     try {
       const csrfToken = vForm.querySelector('input[name="_token"]')?.value || document.querySelector('input[name="_token"]')?.value;
@@ -374,6 +390,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (json.success) {
         vStatus.className = 'form-status success';
         vStatus.textContent = '✓ ' + json.message;
+        
+        // Save for personalization
+        localStorage.setItem('visitor_name', name);
+        localStorage.setItem('visitor_company', company);
+        personalize(name, company);
+
         setTimeout(closeModal, 1000);
       } else {
         throw new Error('Validation failed');
@@ -382,6 +404,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // Graceful fallback if no server
       vStatus.className = 'form-status success';
       vStatus.textContent = '✓ Thanks! (Demo mode)';
+      
+      localStorage.setItem('visitor_name', name);
+      localStorage.setItem('visitor_company', company);
+      personalize(name, company);
+
       setTimeout(closeModal, 1000);
     } finally {
       btn.disabled = false;

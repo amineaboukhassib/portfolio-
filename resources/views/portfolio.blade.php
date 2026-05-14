@@ -68,7 +68,7 @@
     <div class="container">
       <div class="hero-content">
 
-        <div class="hero-tag">
+        <div class="hero-tag" id="heroTag">
           Software Engineering Student · Istanbul, Türkiye
         </div>
 
