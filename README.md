@@ -48,13 +48,6 @@ Follow these steps to run the portfolio locally on your machine.
    ```
    Visit the app at: `http://127.0.0.1:8000`
 
-## 🔒 Admin Access
-
-The dashboard is protected. You can access it by appending `/admin/login` to your local URL (e.g., `http://127.0.0.1:8000/admin/login`).
-
-**Default Credentials:**
-*   **Username:** `Admin`
-*   **Password:** `112233Aa5957`
 
 ## 📂 Project Structure Highlights
 *   `routes/web.php` - Contains all public pages, API endpoints (`/api/visitors`, `/api/contact`), and protected admin routes.
